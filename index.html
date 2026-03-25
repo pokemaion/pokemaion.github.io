@@ -6,7 +6,7 @@
     <title>Makayla Mai</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after {
             margin: 0;
@@ -35,7 +35,7 @@
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 300;
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
@@ -86,10 +86,13 @@
 
         /* Sections */
         section {
-            min-height: 100vh;
-            padding: 120px 60px 80px;
-            max-width: 900px;
+            padding: 80px 60px;
+            max-width: 720px;
             margin: 0 auto;
+        }
+
+        #about {
+            padding-top: 120px;
         }
 
         .section-label {
@@ -101,12 +104,6 @@
         }
 
         /* About */
-        #about {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
         .hero-greeting {
             font-size: 0.85rem;
             color: var(--text-muted);
@@ -147,102 +144,25 @@
             margin-top: 18px;
         }
 
-        /* Photo Gallery Panels */
-        .gallery-panels {
+        /* Photo Strip */
+        .photo-strip {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 48px;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 6px;
+            margin-top: 40px;
         }
 
-        .gallery-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .gallery-panel-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .gallery-panel-label {
-            font-size: 0.72rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--accent);
-        }
-
-
-        .gallery-panel-frame {
-            position: relative;
-            aspect-ratio: 1 / 1;
-            overflow: hidden;
-            background: var(--bg-secondary);
-        }
-
-        .gallery-panel-frame img {
-            position: absolute;
-            inset: 0;
+        .photo-strip img {
             width: 100%;
-            height: 100%;
+            aspect-ratio: 1 / 1;
             object-fit: cover;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            display: block;
+            transition: opacity 0.2s;
+        }
+
+        .photo-strip img:hover {
+            opacity: 0.85;
             cursor: pointer;
-        }
-
-        .gallery-panel-frame img.active {
-            opacity: 1;
-        }
-
-        .gallery-panel-controls {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .gallery-arrow {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.2s ease;
-            line-height: 1;
-        }
-
-        .gallery-arrow:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .gallery-arrow:disabled {
-            opacity: 0.2;
-            cursor: default;
-        }
-
-        .gallery-dots {
-            display: flex;
-            gap: 5px;
-        }
-
-        .gallery-dot {
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: var(--border);
-            transition: background 0.2s;
-        }
-
-        .gallery-dot.active {
-            background: var(--accent);
         }
 
         /* Lightbox */
@@ -295,41 +215,45 @@
             border-top: 1px solid var(--border);
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 1px;
-            background: var(--border);
-            border: 1px solid var(--border);
-        }
-
-        .project-card {
-            background: var(--bg);
-            padding: 36px 32px;
-            min-height: 200px;
+        .project-list {
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            transition: background 0.25s ease;
         }
 
-        .project-card:hover {
-            background: var(--bg-secondary);
+        .project-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--text);
+            transition: color 0.2s;
+            gap: 16px;
         }
 
-        .project-soon {
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
+        .project-row:hover {
+            color: var(--accent);
+        }
+
+        .project-row-name {
+            font-size: 0.92rem;
+        }
+
+        .project-row-tag {
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--text-muted);
-            margin-bottom: 10px;
         }
 
-        .project-placeholder-text {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.25rem;
-            color: #d8d4ce;
-            line-height: 1.4;
+        .project-row.soon {
+            color: var(--text-muted);
+            cursor: default;
+        }
+
+        .project-row.soon:hover {
+            color: var(--text-muted);
         }
 
         /* Contact */
@@ -346,57 +270,52 @@
 
         .contact-sub {
             color: var(--text-muted);
-            font-size: 0.92rem;
+            font-size: 0.88rem;
             max-width: 420px;
-            margin-bottom: 48px;
+            margin-bottom: 36px;
             line-height: 1.85;
         }
 
         .contact-links {
             display: flex;
+            flex-wrap: wrap;
+            gap: 8px 0;
             flex-direction: column;
-            border: 1px solid var(--border);
-            max-width: 420px;
         }
 
         .contact-link {
-            display: grid;
-            grid-template-columns: 80px 1fr auto;
+            display: inline-flex;
             align-items: center;
-            gap: 16px;
-            padding: 18px 24px;
+            gap: 8px;
             text-decoration: none;
             color: var(--text-muted);
-            font-size: 0.88rem;
-            border-bottom: 1px solid var(--border);
-            transition: all 0.2s ease;
-        }
-
-        .contact-link:last-child {
-            border-bottom: none;
+            font-size: 0.85rem;
+            padding: 4px 0;
+            transition: color 0.2s;
+            width: fit-content;
         }
 
         .contact-link:hover {
-            background: var(--bg-secondary);
             color: var(--text);
         }
 
         .contact-link-label {
-            text-transform: uppercase;
+            font-size: 0.72rem;
             letter-spacing: 0.1em;
-            font-size: 0.7rem;
+            text-transform: uppercase;
             color: var(--accent);
+            width: 72px;
         }
 
         .contact-link-arrow {
-            font-size: 0.8rem;
-            opacity: 0.3;
+            font-size: 0.75rem;
+            opacity: 0;
             transition: opacity 0.2s, transform 0.2s;
         }
 
         .contact-link:hover .contact-link-arrow {
             opacity: 1;
-            transform: translateX(4px);
+            transform: translateX(3px);
         }
 
         /* Footer */
@@ -478,8 +397,11 @@
             }
 
             section {
-                padding: 100px 24px 60px;
-                scroll-margin-top: 90px;
+                padding: 60px 24px;
+            }
+
+            #about {
+                padding-top: 100px;
             }
 
             footer {
@@ -539,69 +461,19 @@
             </p>
         </div>
 
-        <!-- Photo Gallery Panels -->
-        <div class="gallery-panels fade-in">
-
-            <!-- Me -->
-            <div class="gallery-panel" data-panel="me">
-                <div class="gallery-panel-header">
-                    <span class="gallery-panel-label">Me</span>
-                </div>
-                <div class="gallery-panel-frame">
-                    <img src="me/IMG_3176.jpg" alt="Me" class="active" style="object-position: 50% 65%;">
-                    <img src="me/IMG_3177.jpg" alt="Me" style="object-position: 50% 65%;">
-                    <img src="me/IMG_3178.jpg" alt="Me">
-                </div>
-                <div class="gallery-panel-controls">
-                    <button class="gallery-arrow prev" disabled>←</button>
-                    <div class="gallery-dots">
-                        <div class="gallery-dot active"></div>
-                        <div class="gallery-dot"></div>
-                        <div class="gallery-dot"></div>
-                    </div>
-                    <button class="gallery-arrow next">→</button>
-                </div>
-            </div>
-
-            <!-- Etc. -->
-            <div class="gallery-panel" data-panel="etc">
-                <div class="gallery-panel-header">
-                    <span class="gallery-panel-label">Etc.</span>
-                </div>
-                <div class="gallery-panel-frame">
-                    <img src="etc/DSC00016.JPG" alt="Etc" class="active" style="object-position: 50% 65%;">
-                    <img src="etc/IMG_3179.jpg" alt="Etc" style="object-position: 50% 65%;">
-                    <img src="etc/IMG_3180.jpg" alt="Etc">
-                </div>
-                <div class="gallery-panel-controls">
-                    <button class="gallery-arrow prev" disabled>←</button>
-                    <div class="gallery-dots">
-                        <div class="gallery-dot active"></div>
-                        <div class="gallery-dot"></div>
-                        <div class="gallery-dot"></div>
-                    </div>
-                    <button class="gallery-arrow next">→</button>
-                </div>
-            </div>
-
-        </div>
     </section>
 
     <!-- Projects -->
     <section id="projects">
         <p class="section-label fade-in">Projects</p>
-        <div class="projects-grid fade-in">
-            <div class="project-card">
-                <p class="project-soon">Coming soon</p>
-                <p class="project-placeholder-text">Something is<br>in the works.</p>
-            </div>
-            <div class="project-card">
-                <p class="project-soon">Coming soon</p>
-                <p class="project-placeholder-text">Stay tuned.</p>
-            </div>
-            <div class="project-card">
-                <p class="project-soon">Coming soon</p>
-                <p class="project-placeholder-text">Check back<br>later.</p>
+        <div class="project-list fade-in">
+            <a href="https://github.com/pokemaion" target="_blank" rel="noopener" class="project-row">
+                <span class="project-row-name">Pokémon Team Counter</span>
+                <span class="project-row-tag">Gen I · Type Analyzer</span>
+            </a>
+            <div class="project-row soon">
+                <span class="project-row-name">More coming soon</span>
+                <span class="project-row-tag">—</span>
             </div>
         </div>
     </section>
@@ -644,33 +516,13 @@
     </footer>
 
     <script>
-        // Gallery panels
+        // Lightbox for photo strip
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
 
-        document.querySelectorAll('.gallery-panel').forEach(panel => {
-            const imgs = panel.querySelectorAll('.gallery-panel-frame img');
-            const dots = panel.querySelectorAll('.gallery-dot');
-                const prevBtn = panel.querySelector('.gallery-arrow.prev');
-            const nextBtn = panel.querySelector('.gallery-arrow.next');
-            let current = 0;
-
-            function goTo(index) {
-                imgs[current].classList.remove('active');
-                dots[current].classList.remove('active');
-                current = index;
-                imgs[current].classList.add('active');
-                dots[current].classList.add('active');
-                prevBtn.disabled = current === 0;
-                nextBtn.disabled = current === imgs.length - 1;
-            }
-
-            prevBtn.addEventListener('click', () => { if (current > 0) goTo(current - 1); });
-            nextBtn.addEventListener('click', () => { if (current < imgs.length - 1) goTo(current + 1); });
-
-            // Click photo to open lightbox
-            panel.querySelector('.gallery-panel-frame').addEventListener('click', () => {
-                lightboxImg.src = imgs[current].src;
+        document.querySelectorAll('.photo-strip img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
                 lightbox.classList.add('open');
             });
         });
@@ -678,6 +530,10 @@
         document.getElementById('lightbox-close').addEventListener('click', () => lightbox.classList.remove('open'));
         lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('open'); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') lightbox.classList.remove('open'); });
+
+        // Always start at top
+        if (history.scrollRestoration) history.scrollRestoration = 'manual';
+        window.scrollTo(0, 0);
 
         // Scroll fade-in
         const observer = new IntersectionObserver((entries) => {
