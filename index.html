@@ -87,12 +87,13 @@
         /* Sections */
         section {
             padding: 80px 60px;
-            max-width: 720px;
+            max-width: 860px;
             margin: 0 auto;
         }
 
         #about {
-            padding-top: 120px;
+            padding-top: 140px;
+            padding-bottom: 60px;
         }
 
         .section-label {
@@ -112,19 +113,21 @@
         }
 
         .hero-name {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(2.8rem, 7vw, 5rem);
-            line-height: 1.05;
-            margin-bottom: 28px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: clamp(3.6rem, 11vw, 8rem);
+            line-height: 0.95;
+            margin-bottom: 36px;
             color: var(--text);
+            letter-spacing: -0.03em;
         }
 
         .hero-tagline {
-            font-size: 1rem;
-            color: var(--text-muted);
-            max-width: 500px;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
             margin-bottom: 52px;
-            line-height: 1.85;
         }
 
         .hero-tagline span {
@@ -338,8 +341,8 @@
         /* Animations */
         .fade-in {
             opacity: 0;
-            transform: translateY(18px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateY(32px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .fade-in.visible {
@@ -347,9 +350,44 @@
             transform: translateY(0);
         }
 
-        .fade-in:nth-child(2) { transition-delay: 0.1s; }
-        .fade-in:nth-child(3) { transition-delay: 0.2s; }
-        .fade-in:nth-child(4) { transition-delay: 0.3s; }
+        .fade-in:nth-child(2) { transition-delay: 0.08s; }
+        .fade-in:nth-child(3) { transition-delay: 0.16s; }
+        .fade-in:nth-child(4) { transition-delay: 0.24s; }
+
+        /* Marquee */
+        .marquee-strip {
+            width: 100%;
+            overflow: hidden;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+            background: var(--bg);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 0;
+            white-space: nowrap;
+            animation: marquee 28s linear infinite;
+        }
+
+        .marquee-track span {
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 0 20px;
+        }
+
+        .marquee-track .dot {
+            color: var(--accent);
+            padding: 0 2px;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
 
         /* Ditto */
         #ditto {
@@ -444,8 +482,7 @@
         <p class="hero-greeting fade-in">Hello, I'm</p>
         <h1 class="hero-name fade-in">Makayla Mai</h1>
         <p class="hero-tagline fade-in">
-            Computer engineering student at <span>UW Seattle</span> —
-            exploring the intersections of data, design, and software.
+            UW Seattle — CS, design, and everything in between.
         </p>
 
         <div class="about-bio fade-in">
@@ -462,6 +499,30 @@
         </div>
 
     </section>
+
+    <!-- Marquee -->
+    <div class="marquee-strip">
+        <div class="marquee-track">
+            <span>Computer Engineering</span><span class="dot">·</span>
+            <span>UW Seattle</span><span class="dot">·</span>
+            <span>Data Science</span><span class="dot">·</span>
+            <span>UI / UX Design</span><span class="dot">·</span>
+            <span>JavaScript</span><span class="dot">·</span>
+            <span>Java</span><span class="dot">·</span>
+            <span>Pokémon</span><span class="dot">·</span>
+            <span>Seattle, WA</span><span class="dot">·</span>
+            <span>Open to Opportunities</span><span class="dot">·</span>
+            <span>Computer Engineering</span><span class="dot">·</span>
+            <span>UW Seattle</span><span class="dot">·</span>
+            <span>Data Science</span><span class="dot">·</span>
+            <span>UI / UX Design</span><span class="dot">·</span>
+            <span>JavaScript</span><span class="dot">·</span>
+            <span>Java</span><span class="dot">·</span>
+            <span>Pokémon</span><span class="dot">·</span>
+            <span>Seattle, WA</span><span class="dot">·</span>
+            <span>Open to Opportunities</span><span class="dot">·</span>
+        </div>
+    </div>
 
     <!-- Projects -->
     <section id="projects">
